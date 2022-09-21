@@ -11,6 +11,12 @@ class Post extends Model
 
     //   Guarded geeft aan dat alles mag worden mass assigned behalfe wat in de array word gezet.
     //   Fillable geeft aan dat niks mag worden mass assigned behalfe wat in de array word gezet.
-//      protected $guarded = ['id'];
+      protected $guarded = [];
 //    protected $fillable = ['title', 'excerpt', 'body'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }
