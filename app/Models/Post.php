@@ -9,8 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    //   Guarded geeft aan dat alles mag worden mass assigned behalfe wat in de array word gezet.
-    //   Fillable geeft aan dat niks mag worden mass assigned behalfe wat in de array word gezet.
       protected $guarded = [];
 //    protected $fillable = ['title', 'excerpt', 'body'];
 
