@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function request;
 
 class Post extends Model
 {
@@ -12,6 +13,20 @@ class Post extends Model
       protected $guarded = [];
 //    protected $fillable = ['title', 'excerpt', 'body'];
       protected $with = ['category', 'author'];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) => $query
+            ->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('body', 'like', '%' . request('search') . '%'));
+
+
+//        if ($filters['search'] ?? false) {
+//            $query
+//                ->where('title', 'like', '%' . request('search') . '%')
+//                ->orWhere('body', 'like', '%' . request('search') . '%');
+//        }
+    }
 
     public function category()
     {
