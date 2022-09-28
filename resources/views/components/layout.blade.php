@@ -22,7 +22,7 @@
                 <form method="POST" action="/logout" class="text-sm font-semibold text-blue-500 ml-6">
                     @csrf
 
-                    <button type="submite">Log out</button>
+                    <button type="submit">Log out</button>
                 </form>
             @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
