@@ -28,13 +28,13 @@ class SessionsController extends Controller
 
         session()->regenerate();
 
-        return redirect('/')->with('succes', 'Welcome back!');
+        return redirect('/')->with('success', 'Welcome back!');
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect('/')->with('succes', 'Goodbye!');
+        return redirect('/')->with('success', 'Goodbye!');
     }
 }
