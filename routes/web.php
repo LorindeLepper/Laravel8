@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
@@ -12,11 +13,14 @@ use Illuminate\Validation\ValidationException;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
+// Posts
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
+// Newsletter
 Route::post('newsletter', NewsletterController::class);
 
+// User
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
@@ -29,4 +33,7 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class);
 });
+
+// Account
+Route::get('account', [AccountController::class, 'create'])->middleware('auth');
 
