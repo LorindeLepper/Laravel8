@@ -35,5 +35,7 @@ Route::middleware('can:admin')->group(function () {
 });
 
 // Account
-Route::get('account', [AccountController::class, 'create'])->middleware('auth');
+Route::get('account', [AccountController::class, 'index'])->middleware('auth');
 
+Route::get('settings', [AccountController::class, 'settings'])->middleware('auth');
+Route::post('settings', [AccountController::class, 'update'])->middleware('auth');
