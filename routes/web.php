@@ -21,13 +21,13 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 Route::post('newsletter', NewsletterController::class);
 
 // User
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisterController::class, 'create']);
+    Route::post('register', [RegisterController::class, 'store']);
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+    Route::get('login', [SessionsController::class, 'create']);
+    Route::post('login', [SessionsController::class, 'store']);
+});
 
 // Admin
 Route::middleware('can:admin')->group(function () {
@@ -35,7 +35,12 @@ Route::middleware('can:admin')->group(function () {
 });
 
 // Account
-Route::get('account', [AccountController::class, 'index'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [SessionsController::class, 'destroy']);
 
-Route::get('settings', [AccountController::class, 'settings'])->middleware('auth');
-Route::post('settings', [AccountController::class, 'update'])->middleware('auth');
+    Route::get('account/{user:username}', [AccountController::class, 'index'])->name('account');
+    Route::get('account', fn()=>redirect()->route('account', [auth()->user()]));
+
+    Route::get('account/{user:username}/settings', [AccountController::class, 'settings'])->name('account.settings');
+    Route::post('account/{user:username}/settings', [AccountController::class, 'update']);
+});

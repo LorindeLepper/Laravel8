@@ -5,7 +5,7 @@
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <table class="min-w-full divide-y divide-gray-200">
                         <tbody class="bg-white divide-y divide-gray-200">
-
+{{--                        TODO: Find appropriate data to display on account page --}}
                         </tbody>
                     </table>
                 </div>

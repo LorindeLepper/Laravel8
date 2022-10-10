@@ -5,6 +5,7 @@
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <table class="min-w-full divide-y divide-gray-200">
                         <tbody class="bg-white divide-y divide-gray-200">
+{{--                        TODO: Update user when pressing update button --}}
                         <form method="POST" action="account" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
@@ -13,7 +14,8 @@
                             <x-form.input name="name" value="{{ auth()->user()->name }}"/>
                             <x-form.input name="email" type="email" value="{{ auth()->user()->email }}"/>
                             <x-form.input name="password" type="password" placeholder="********"/>
-                            
+
+                            <x-form.button>Update account</x-form.button>
                         </form>
                         </tbody>
                     </table>

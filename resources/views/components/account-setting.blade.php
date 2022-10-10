@@ -11,10 +11,10 @@
 
             <ul>
                 <li>
-                    <a href="/account">Account</a>
+                    <a href="{{ route('account', auth()->user()) }}">Account</a>
                 </li>
                 <li>
-                    <a href="/settings">Settings</a>
+                    <a href="{{ route('account.settings', auth()->user()) }}">Settings</a>
                 </li>
             </ul>
         </aside>
