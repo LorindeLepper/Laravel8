@@ -4,19 +4,23 @@
     class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
-            <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Blog Post illustration" class="rounded-xl">
+            @if(str_starts_with($post->thumbnail, "http"))
+                <img src="{{ $post->thumbnail }}" alt="" class="rounded-xl">
+            @else
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl">
+            @endif
         </div>
 
         <div class="flex-1 flex flex-col justify-between">
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2">
-                    <x-category-button :category="$post->category" />
+                    <x-category-button :category="$post->category"/>
                 </div>
 
                 <div class="mt-4">
                     <h1 class="text-3xl">
                         <a href="/posts/{{ $post->slug }}">
-                          {{ $post->title }}
+                            {{ $post->title }}
                         </a>
                     </h1>
 
@@ -27,7 +31,7 @@
             </header>
 
             <div class="text-sm mt-2 space-y-4">
-                    {!! $post->excerpt !!}
+                {!! $post->excerpt !!}
             </div>
 
             <footer class="flex justify-between items-center mt-8">
