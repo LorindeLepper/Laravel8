@@ -6,18 +6,19 @@
     </h1>
 
     <div class="flex ">
-        <aside class="w-48 flex-shrink-0">
-            <h4 class="font-semibold mb-4">Links</h4>
 
-            <ul>
-                <li>
-                    <a href="{{ route('account', auth()->user()) }}">Account</a>
-                </li>
-                <li>
-                    <a href="{{ route('account.settings', auth()->user()) }}">Settings</a>
-                </li>
-            </ul>
-        </aside>
+        @if(Request::route()->getName() != "settings")
+        @else
+            <aside class="w-48 flex-shrink-0">
+                <h4 class="font-semibold mb-4">Links</h4>
+
+                <ul>
+                    <li>
+                        <a href="{{ route('settings', auth()->user()) }}">Settings</a>
+                    </li>
+                </ul>
+            </aside>
+        @endif
 
         <main class="flex-1">
             <x-panel>
