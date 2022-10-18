@@ -37,6 +37,7 @@
 
                         <x-dropdown-item href="{{ route('account', auth()->user()) }}">Account</x-dropdown-item>
 
+                        <x-dropdown-item href="{{ route('settings', auth()->user()) }}">Settings</x-dropdown-item>
 
                         <x-dropdown-item href="#" x-data="{}"
                              @click.prevent="document.querySelector('#logout-form').submit()">Log out
