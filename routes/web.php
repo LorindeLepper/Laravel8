@@ -35,7 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [SessionsController::class, 'destroy']);
 
     Route::get('account/{user:username}', [AccountController::class, 'index'])->name('account');
+
     Route::get('settings', [SettingsController::class, 'index'])->name('settings');
+    Route::post('settings', [SettingsController::class, 'update']);
+
+//    Route::get('bookmarks/{user:username}', [AccountController::class, 'index'])->name('bookmarks');
 });
 
 // Admin
