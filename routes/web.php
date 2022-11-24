@@ -8,9 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SettingsController;
-use App\Services\Newsletter;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
@@ -19,7 +17,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 // Newsletter
-Route::post('newsletter', NewsletterController::class);
+Route::post('newsletter', NewsletterController::class)->name('subscribe.email');
 
 // guest
 Route::middleware('guest')->group(function () {
