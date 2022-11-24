@@ -4,9 +4,10 @@ namespace App\Services;
 
 use MailchimpMarketing\ApiClient;
 
-class MailchimpNewsletter implements Newsletter
+class MailchimpNewsletter
 {
     protected ApiClient $client;
+
     public function __construct(ApiClient $client)
     {
         $this->client = $client;
