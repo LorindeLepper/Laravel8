@@ -25,13 +25,14 @@
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
-                            <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
+                                <button class="text-xs font-bold uppercase">
+                                    Welcome, {{ auth()->user()->name }}!
+                                </button>
                         </x-slot>
 
                         @admin
-                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">All posts
-                            </x-dropdown-item>
-                            <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New post
+                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">
+                                All posts
                             </x-dropdown-item>
                         @endadmin
 
@@ -48,9 +49,14 @@
                         </form>
                     </x-dropdown>
 
+                    @if(auth()->user()->avatar == NULL)
+                    @else
+                        <img class="mr-5" src="{{ auth()->user()->avatar }}" style="width:50px; height:50px; padding:10px; border-radius: 9px;">
+                    @endif
+
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                    <a href="/login" class="ml-4 text-xs font-bold uppercase">Log in</a>
+                    <a href="/register" class="text-xs font-bold uppercase mr-2">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase">Log in</a>
                 @endauth
 
                 <a href="#newsletter"

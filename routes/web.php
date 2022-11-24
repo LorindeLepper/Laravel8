@@ -14,7 +14,7 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Posts
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
-Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store'])->name('comment.create');
 
 // Newsletter
 Route::post('newsletter', NewsletterController::class)->name('subscribe.email');
